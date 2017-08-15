@@ -7,7 +7,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { BookService } from './books/shared/book.service';
-import { BookListComponent } from './books/book-list/book-list.component'
+import { BookListComponent } from './books/book-list/book-list.component';
+import { FormComponent } from './books/form/form.component';
+import { BookComponent } from './books/book/book.component'
 
 const appRoutes: Routes = [
   {
@@ -17,12 +19,20 @@ const appRoutes: Routes = [
       {
         path: '',
         component: BookListComponent
+      },
+      {
+        path: 'new',
+        component: FormComponent
+      },
+      {
+        path: ':id',
+        component: BookComponent
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/book',
+    redirectTo: '/books',
     pathMatch: 'full'
   }
 ]
@@ -31,7 +41,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     BooksComponent,
-    BookListComponent
+    BookListComponent,
+    FormComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
