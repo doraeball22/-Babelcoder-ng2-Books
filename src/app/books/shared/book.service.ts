@@ -14,8 +14,17 @@ export class BookService {
     return this.books;
   }
 
-  getBook(id: number) {
-    return this.books.find(book => book.id === id);
+  getBook(id: number): Book {
+    const index = this.books.findIndex(book => book.id === id);
+    const currentBook = this.books[index];
+    const prevBook = this.books[index - 1];
+    const nextBook = this.books[index + 1];
+
+    return {
+      ...currentBook,
+      prevId: prevBook ? prevBook.id : null,
+      nextId: nextBook ? nextBook.id : null
+    };
   }
 
   createBook(book: Book) {

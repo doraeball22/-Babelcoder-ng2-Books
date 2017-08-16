@@ -18,4 +18,14 @@
     <h2 class="card-title">Description</h2>
     <p class="card-text">{{ book.description}}</p>
   </div>
+  <div class="card-footer text-mute">
+  <button
+  *ngIf="book.prevId"
+  class="btn btn-secondary btn-sm"
+  (click)="onPrev()">Previous</button>
+  <button
+  *ngIf="book.nextId"
+  class="btn btn-seconday btn-sm"
+  (click)="onNext()">Next</button>
+  </div>
 </div>

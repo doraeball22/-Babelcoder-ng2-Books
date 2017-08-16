@@ -4,6 +4,8 @@ export interface Book {
     content: string;
     description: string;
     reviews?: string[]; 
+    prevId?: number;
+    nextId?: number;
 }
 
 
