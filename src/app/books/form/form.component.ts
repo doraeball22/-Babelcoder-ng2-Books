@@ -15,6 +15,7 @@ export class FormComponent implements OnInit {
 
   constructor( 
     private formBuilder: FormBuilder,
+    // ใช้ data ในการส่งข้อมูลจาก url สมมติ url นี้เรียกจาก component เดียวกัน แต่เราจะเปลี่ยนปุ่ม create หรือ update
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService
