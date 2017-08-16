@@ -11,6 +11,7 @@ import { BookService } from '../shared/book.service';
 export class FormComponent implements OnInit {
 
   form: FormGroup;
+  formType: 'NEW' | 'EDIT';
   submitBtnTxt: 'Create' | 'Update';
 
   constructor( 
@@ -22,21 +23,46 @@ export class FormComponent implements OnInit {
    ) { }
 
   ngOnInit() {
+    this.setFormType();
     this.createForm();
+    this.loadBook();
     this.setSubmitBtnTxt();
   }
 
   onSubmit(event) {
     event.preventDefault();
 
+    this.formType === 'NEW' ? this.createBook() : this.updateBook();
+
+  }
+
+  private createBook() {
     this.bookService.createBook(this.form.value);
     this.router.navigate(['/books']);
   }
 
-  private setSubmitBtnTxt() {
-    const { formType } = this.route.snapshot.data;
+  private updateBook() {
+    const { id } = this.route.snapshot.params;
+    this.bookService.updateBook(+id, this.form.value);
+    this.router.navigate(['/books', id]);
+  }
 
-    this.submitBtnTxt = formType === 'NEW'? 'Create' : 'Update';
+  private loadBook() {
+    if(this.formType === 'NEW') return;
+
+    const { id } = this.route.snapshot.params;
+    const { title, description, content } = this.bookService.getBook(+id);
+
+    this.form.setValue({ title, description, content });
+  }
+
+  private setFormType() {
+    this.formType = this.route.snapshot.data.formType;
+  }
+
+  private setSubmitBtnTxt() {
+
+    this.submitBtnTxt = this.formType === 'NEW'? 'Create' : 'Update';
   }
 
   private createForm() {
