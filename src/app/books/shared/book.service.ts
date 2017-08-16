@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book } from './book';
+import { FlashMessageService } from '../../flash-message/shared/flash-message.service';
 import { MockBooks } from './mock-books';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class BookService {
 
   books: Book[] = MockBooks;
 
-  constructor() { }
+  constructor(private flashMessageService: FlashMessageService) { }
   
   getBooks() {
     return this.books;
@@ -23,7 +24,9 @@ export class BookService {
       {
         ...book, id: this.books.length + 1
       }
-    ]
+    ];
+
+    this.flashMessageService.addMessage('success', 'The book has been created.');
   }
 
   updateBook(id: number, book: Book) {
@@ -34,6 +37,8 @@ export class BookService {
       ...this.books.slice(0, index),
       { ...book, id},
       ...this.books.slice(index +1)
-    ]
+    ];
+
+    this.flashMessageService.addMessage('success', 'The book has been updated.');
   }
 }

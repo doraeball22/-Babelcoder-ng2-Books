@@ -9,7 +9,9 @@ import { BooksComponent } from './books/books.component';
 import { BookService } from './books/shared/book.service';
 import { BookListComponent } from './books/book-list/book-list.component';
 import { FormComponent } from './books/form/form.component';
-import { BookComponent } from './books/book/book.component'
+import { BookComponent } from './books/book/book.component';
+import { FlashMessageComponent } from './flash-message/flash-message.component'
+import { FlashMessageService } from './flash-message/shared/flash-message.service'
 
 const appRoutes: Routes = [
   {
@@ -49,7 +51,8 @@ const appRoutes: Routes = [
     BooksComponent,
     BookListComponent,
     FormComponent,
-    BookComponent
+    BookComponent,
+    FlashMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    BookService
+    BookService,
+    FlashMessageService
   ],
   bootstrap: [AppComponent]
 })
