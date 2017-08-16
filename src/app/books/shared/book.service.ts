@@ -12,4 +12,13 @@ export class BookService {
   getBooks() {
     return this.books;
   }
+
+  createBook(book: Book) {
+    this.books = [
+      ...this.books,
+      {
+        ...book, id: this.books.length + 1
+      }
+    ]
+  }
 }
