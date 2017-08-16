@@ -22,7 +22,13 @@ const appRoutes: Routes = [
       },
       {
         path: 'new',
-        component: FormComponent
+        component: FormComponent,
+        data: { formType: 'NEW' }
+      },
+      {
+        path: ':id/edit',
+        component: FormComponent,
+        data: { formType: 'EDIT' }
       },
       {
         path: ':id',
